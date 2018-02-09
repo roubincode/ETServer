@@ -10,9 +10,9 @@ ET框架不但支持TCP，而且支持可靠的UDP协议（ENET跟KCP），ENet�
 
 
 ## ETServer运行使用方法
- 1.按文档 VS2017离线安装包及可能需要选择的模块 http://www.taikr.com/course/972/task/27856/show 安装好VS2017
- 2.下载ETServer最新版本，用VS打开项目解决方案
- 3.包还原后，编译解决方案中的全部项目
+ 1.按文档 VS2017离线安装包及可能需要选择的模块 http://www.taikr.com/course/972/task/27856/show 安装好VS2017  
+ 2.下载ETServer最新版本，用VS打开项目解决方案  
+ 3.包还原后，编译解决方案中的全部项目  
  4.运行Server.App项目即可
 
 
