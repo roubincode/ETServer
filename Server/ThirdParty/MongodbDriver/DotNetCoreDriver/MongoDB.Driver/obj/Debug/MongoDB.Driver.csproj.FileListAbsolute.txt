@@ -1,0 +1,9 @@
+C:\Users\Taikr_1_001\Documents\ETServer\Bin\MongoDB.Driver.deps.json
+C:\Users\Taikr_1_001\Documents\ETServer\Bin\MongoDB.Driver.dll
+C:\Users\Taikr_1_001\Documents\ETServer\Bin\MongoDB.Driver.pdb
+C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Driver\obj\Debug\MongoDB.Driver.csprojResolveAssemblyReference.cache
+C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Driver\obj\Debug\MongoDB.Driver.csproj.CoreCompileInputs.cache
+C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Driver\obj\Debug\MongoDB.Driver.AssemblyInfoInputs.cache
+C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Driver\obj\Debug\MongoDB.Driver.AssemblyInfo.cs
+C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Driver\obj\Debug\MongoDB.Driver.dll
+C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Driver\obj\Debug\MongoDB.Driver.pdb
