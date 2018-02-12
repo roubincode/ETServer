@@ -13,11 +13,11 @@ namespace Model
 	}
 
 	[ObjectSystem]
-	public class LockComponentSystem : ObjectSystem<LockComponent>, IAwake<IPEndPoint>
+	public class LockComponentAwakeSystem : AwakeSystem<LockComponent, IPEndPoint>
 	{
-		public void Awake(IPEndPoint a)
+		public override void Awake(LockComponent self, IPEndPoint a)
 		{
-			this.Get().Awake(a);
+			self.Awake(a);
 		}
 	}
 
@@ -83,7 +83,7 @@ namespace Model
 			{
 				Session session = Game.Scene.GetComponent<NetInnerComponent>().Get(this.address);
 				string serverAddress = Game.Scene.GetComponent<StartConfigComponent>().StartConfig.ServerIP;
-				G2G_LockRequest request = new G2G_LockRequest { Id = this.Parent.Id, Address = serverAddress };
+				G2G_LockRequest request = new G2G_LockRequest { Id = this.Entity.Id, Address = serverAddress };
 				await session.Call(request);
 
 				this.status = LockStatus.Locked;
@@ -96,7 +96,7 @@ namespace Model
 			}
 			catch (Exception e)
 			{
-				Log.Error($"获取锁失败: {this.address} {this.Parent.Id} {e}");
+				Log.Error($"获取锁失败: {this.address} {this.Entity.Id} {e}");
 			}
 		}
 

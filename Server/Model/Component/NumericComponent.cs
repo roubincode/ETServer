@@ -5,11 +5,11 @@ using MongoDB.Bson.Serialization.Options;
 namespace Model
 {
 	[ObjectSystem]
-	public class NumericComponentSystem : ObjectSystem<NumericComponent>, IAwake
+	public class NumericComponentSystem : AwakeSystem<NumericComponent>
 	{
-		public void Awake()
+		public override void Awake(NumericComponent self)
 		{
-			this.Get().Awake();
+			self.Awake();
 		}
 	}
 
@@ -58,7 +58,7 @@ namespace Model
 				}
 
 				NumericDic[numericType] = value;
-				Game.EventSystem.Run(EventIdType.NumbericChange, this.Parent.Id, numericType, value);
+				Game.EventSystem.Run(EventIdType.NumbericChange, this.Entity.Id, numericType, value);
 			}
 		}
 

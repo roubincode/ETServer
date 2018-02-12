@@ -8,16 +8,20 @@ using System.Threading.Tasks;
 namespace Model
 {
 	[ObjectSystem]
-	public class SessionSystem : ObjectSystem<Session>, IAwake<NetworkComponent, AChannel>, IStart
+	public class SessionAwakeSystem : AwakeSystem<Session, NetworkComponent, AChannel>
 	{
-		public void Awake(NetworkComponent network, AChannel channel)
+		public override void Awake(Session self, NetworkComponent a, AChannel b)
 		{
-			this.Get().Awake(network, channel);
+			self.Awake(a, b);
 		}
+	}
 
-		public void Start()
+	[ObjectSystem]
+	public class SessionStartSystem : StartSystem<Session>
+	{
+		public override void Start(Session self)
 		{
-			this.Get().Start();
+			self.Start();
 		}
 	}
 
@@ -53,7 +57,7 @@ namespace Model
 
 		public override void Dispose()
 		{
-			if (this.Id == 0)
+			if (this.IsDisposed)
 			{
 				return;
 			}
@@ -92,7 +96,7 @@ namespace Model
 		{
 			while (true)
 			{
-				if (this.Id == 0)
+				if (this.IsDisposed)
 				{
 					return;
 				}
@@ -101,7 +105,8 @@ namespace Model
 				try
 				{
 					packet = await this.channel.Recv();
-					if (this.Id == 0)
+					
+					if (this.IsDisposed)
 					{
 						return;
 					}
@@ -139,7 +144,7 @@ namespace Model
 				Opcode = opcode,
 				Bytes = packet.Bytes
 			};
-
+			
 			if ((flag & 0xC0) > 0)
 			{
 				uint rpcId = packet.RpcId();
@@ -217,7 +222,7 @@ namespace Model
 
 		public void Send(ushort opcode, byte[] bytes)
 		{
-			if (this.Id == 0)
+			if (this.IsDisposed)
 			{
 				throw new Exception("session已经被Dispose了");
 			}
@@ -227,7 +232,7 @@ namespace Model
 
 		public void Reply(ushort opcode, uint rpcId, byte[] bytes)
 		{
-			if (this.Id == 0)
+			if (this.IsDisposed)
 			{
 				throw new Exception("session已经被Dispose了");
 			}
