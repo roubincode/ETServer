@@ -1,9 +1,0 @@
-C:\Users\Taikr_1_001\Documents\ETServer\Bin\MongoDB.Bson.deps.json
-C:\Users\Taikr_1_001\Documents\ETServer\Bin\MongoDB.Bson.dll
-C:\Users\Taikr_1_001\Documents\ETServer\Bin\MongoDB.Bson.pdb
-C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Bson\obj\Debug\MongoDB.Bson.csprojResolveAssemblyReference.cache
-C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Bson\obj\Debug\MongoDB.Bson.csproj.CoreCompileInputs.cache
-C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Bson\obj\Debug\MongoDB.Bson.AssemblyInfoInputs.cache
-C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Bson\obj\Debug\MongoDB.Bson.AssemblyInfo.cs
-C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Bson\obj\Debug\MongoDB.Bson.dll
-C:\Users\Taikr_1_001\Documents\ETServer\Server\ThirdParty\MongodbDriver\DotNetCoreDriver\MongoDB.Bson\obj\Debug\MongoDB.Bson.pdb
