@@ -34,8 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Base\Network\KNet\" />
-    <Folder Include="Base\Network\TNet\" />
     <Folder Include="Component\Config\" />
+    <Folder Include="Module\Message\Network\KCP\" />
+    <Folder Include="Module\Message\Network\TCP\" />
+    <Folder Include="Module\Numeric\" />
   </ItemGroup>
 </Project>

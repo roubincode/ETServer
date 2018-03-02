@@ -16,7 +16,7 @@ namespace Model
 	{
 		private readonly Dictionary<DLLType, Assembly> assemblies = new Dictionary<DLLType, Assembly>();
 
-		private readonly Dictionary<EventIdType, List<object>> allEvents = new Dictionary<EventIdType, List<object>>();
+		private readonly Dictionary<int, List<IEvent>> allEvents = new Dictionary<int, List<IEvent>>();
 
 		private readonly UnOrderMultiMap<Type, AAwakeSystem> awakeEvents = new UnOrderMultiMap<Type, AAwakeSystem>();
 
@@ -30,13 +30,16 @@ namespace Model
 
 		private Queue<Component> updates = new Queue<Component>();
 		private Queue<Component> updates2 = new Queue<Component>();
-
+		
 		private readonly Queue<Component> starts = new Queue<Component>();
 
 		private Queue<Component> loaders = new Queue<Component>();
 		private Queue<Component> loaders2 = new Queue<Component>();
 
-		private readonly HashSet<Disposer> unique = new HashSet<Disposer>();
+		private Queue<Component> lateUpdates = new Queue<Component>();
+		private Queue<Component> lateUpdates2 = new Queue<Component>();
+
+		private readonly HashSet<Component> unique = new HashSet<Component>();
 
 		public void Add(DLLType dllType, Assembly assembly)
 		{
@@ -47,7 +50,7 @@ namespace Model
 			this.updateEvents.Clear();
 			this.startEvents.Clear();
 			this.loadEvents.Clear();
-			
+
 			Type[] types = DllHelper.GetMonoTypes();
 			foreach (Type type in types)
 			{
@@ -91,8 +94,7 @@ namespace Model
 				}
 			}
 
-
-			allEvents.Clear();
+			this.allEvents.Clear();
 			foreach (Type type in types)
 			{
 				object[] attrs = type.GetCustomAttributes(typeof(EventAttribute), false);
@@ -101,15 +103,25 @@ namespace Model
 				{
 					EventAttribute aEventAttribute = (EventAttribute)attr;
 					object obj = Activator.CreateInstance(type);
-					if (!this.allEvents.ContainsKey((EventIdType)aEventAttribute.Type))
+					IEvent iEvent = obj as IEvent;
+					if (iEvent == null)
 					{
-						this.allEvents.Add((EventIdType)aEventAttribute.Type, new List<object>());
+						Log.Error($"{obj.GetType().Name} 没有继承IEvent");
 					}
-					this.allEvents[(EventIdType)aEventAttribute.Type].Add(obj);
+					this.RegisterEvent(aEventAttribute.Type, iEvent);
 				}
 			}
 
 			this.Load();
+		}
+
+		public void RegisterEvent(int eventId, IEvent e)
+		{
+			if (!this.allEvents.ContainsKey(eventId))
+			{
+				this.allEvents.Add(eventId, new List<IEvent>());
+			}
+			this.allEvents[eventId].Add(e);
 		}
 
 		public Assembly Get(DLLType dllType)
@@ -140,6 +152,11 @@ namespace Model
 			{
 				this.starts.Enqueue(disposer);
 			}
+
+			if (this.lateUpdateEvents.ContainsKey(type))
+			{
+				this.lateUpdates.Enqueue(disposer);
+			}
 		}
 
 		public void Awake(Component disposer)
@@ -158,7 +175,13 @@ namespace Model
 				{
 					continue;
 				}
-				aAwakeSystem.Run(disposer);
+				
+				IAwake iAwake = aAwakeSystem as IAwake;
+				if (iAwake == null)
+				{
+					continue;
+				}
+				iAwake.Run(disposer);
 			}
 		}
 
@@ -178,7 +201,13 @@ namespace Model
 				{
 					continue;
 				}
-				aAwakeSystem.Run(disposer, p1);
+				
+				IAwake<P1> iAwake = aAwakeSystem as IAwake<P1>;
+				if (iAwake == null)
+				{
+					continue;
+				}
+				iAwake.Run(disposer, p1);
 			}
 		}
 
@@ -198,7 +227,13 @@ namespace Model
 				{
 					continue;
 				}
-				aAwakeSystem.Run(disposer, p1, p2);
+				
+				IAwake<P1, P2> iAwake = aAwakeSystem as IAwake<P1, P2>;
+				if (iAwake == null)
+				{
+					continue;
+				}
+				iAwake.Run(disposer, p1, p2);
 			}
 		}
 
@@ -218,7 +253,13 @@ namespace Model
 				{
 					continue;
 				}
-				aAwakeSystem.Run(disposer, p1, p2, p3);
+
+				IAwake<P1, P2, P3> iAwake = aAwakeSystem as IAwake<P1, P2, P3>;
+				if (iAwake == null)
+				{
+					continue;
+				}
+				iAwake.Run(disposer, p1, p2, p3);
 			}
 		}
 
@@ -279,7 +320,7 @@ namespace Model
 				{
 					continue;
 				}
-
+				
 				foreach (AStartSystem aStartSystem in aStartSystems)
 				{
 					try
@@ -311,7 +352,7 @@ namespace Model
 				{
 					continue;
 				}
-
+				
 				List<AUpdateSystem> aUpdateSystems = this.updateEvents[disposer.GetType()];
 				if (aUpdateSystems == null)
 				{
@@ -336,19 +377,58 @@ namespace Model
 			ObjectHelper.Swap(ref this.updates, ref this.updates2);
 		}
 
-		public void Run(EventIdType type)
+		public void LateUpdate()
 		{
-			List<object> iEvents;
+			this.unique.Clear();
+			while (this.lateUpdates.Count > 0)
+			{
+				Component disposer = this.lateUpdates.Dequeue();
+				if (disposer.IsDisposed)
+				{
+					continue;
+				}
+
+				if (!this.unique.Add(disposer))
+				{
+					continue;
+				}
+
+				List<ALateUpdateSystem> aLateUpdateSystems = this.lateUpdateEvents[disposer.GetType()];
+				if (aLateUpdateSystems == null)
+				{
+					continue;
+				}
+
+				this.lateUpdates2.Enqueue(disposer);
+
+				foreach (ALateUpdateSystem aLateUpdateSystem in aLateUpdateSystems)
+				{
+					try
+					{
+						aLateUpdateSystem.Run(disposer);
+					}
+					catch (Exception e)
+					{
+						Log.Error(e.ToString());
+					}
+				}
+			}
+
+			ObjectHelper.Swap(ref this.lateUpdates, ref this.lateUpdates2);
+		}
+
+		public void Run(int type)
+		{
+			List<IEvent> iEvents;
 			if (!this.allEvents.TryGetValue(type, out iEvents))
 			{
 				return;
 			}
-			foreach (object obj in iEvents)
+			foreach (IEvent iEvent in iEvents)
 			{
 				try
 				{
-					IEvent iEvent = (IEvent)obj;
-					iEvent.Run();
+					iEvent?.Handle();
 				}
 				catch (Exception e)
 				{
@@ -357,68 +437,62 @@ namespace Model
 			}
 		}
 
-		public void Run<A>(EventIdType type, A a)
+		public void Run<A>(int type, A a)
 		{
-			List<object> iEvents;
+			List<IEvent> iEvents;
 			if (!this.allEvents.TryGetValue(type, out iEvents))
 			{
 				return;
 			}
-
-			foreach (object obj in iEvents)
+			foreach (IEvent iEvent in iEvents)
 			{
 				try
 				{
-					IEvent<A> iEvent = (IEvent<A>)obj;
-					iEvent.Run(a);
+					iEvent?.Handle(a);
 				}
-				catch (Exception err)
+				catch (Exception e)
 				{
-					Log.Error(err.ToString());
+					Log.Error(e.ToString());
 				}
 			}
 		}
 
-		public void Run<A, B>(EventIdType type, A a, B b)
+		public void Run<A, B>(int type, A a, B b)
 		{
-			List<object> iEvents;
+			List<IEvent> iEvents;
 			if (!this.allEvents.TryGetValue(type, out iEvents))
 			{
 				return;
 			}
-
-			foreach (object obj in iEvents)
+			foreach (IEvent iEvent in iEvents)
 			{
 				try
 				{
-					IEvent<A, B> iEvent = (IEvent<A, B>)obj;
-					iEvent.Run(a, b);
+					iEvent?.Handle(a, b);
 				}
-				catch (Exception err)
+				catch (Exception e)
 				{
-					Log.Error(err.ToString());
+					Log.Error(e.ToString());
 				}
 			}
 		}
 
-		public void Run<A, B, C>(EventIdType type, A a, B b, C c)
+		public void Run<A, B, C>(int type, A a, B b, C c)
 		{
-			List<object> iEvents;
+			List<IEvent> iEvents;
 			if (!this.allEvents.TryGetValue(type, out iEvents))
 			{
 				return;
 			}
-
-			foreach (object obj in iEvents)
+			foreach (IEvent iEvent in iEvents)
 			{
 				try
 				{
-					IEvent<A, B, C> iEvent = (IEvent<A, B, C>)obj;
-					iEvent.Run(a, b, c);
+					iEvent?.Handle(a, b, c);
 				}
-				catch (Exception err)
+				catch (Exception e)
 				{
-					Log.Error(err.ToString());
+					Log.Error(e.ToString());
 				}
 			}
 		}
