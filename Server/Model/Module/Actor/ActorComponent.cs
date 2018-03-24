@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Model
+namespace ETModel
 {
-	public class ActorMessageInfo
+	public struct ActorMessageInfo
 	{
 		public Session Session;
-		public uint RpcId;
-		public ActorRequest Message;
+		public IActorMessage Message;
 	}
 
 	/// <summary>
@@ -38,7 +37,7 @@ namespace Model
 
 				var t = this.tcs;
 				this.tcs = null;
-				t?.SetResult(null);
+				t?.SetResult(new ActorMessageInfo());
 
 				Game.Scene.GetComponent<ActorManagerComponent>().Remove(actorId);
 			}

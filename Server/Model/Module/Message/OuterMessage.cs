@@ -1,13 +1,19 @@
 using ProtoBuf;
-using Model;
+using ETModel;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
-namespace Model
+namespace ETModel
 {
 	[Message(OuterOpcode.Actor_Test)]
 	[ProtoContract]
-	public partial class Actor_Test: MessageObject, IActorMessage
+	public partial class Actor_Test: IActorMessage
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public string Info;
 
@@ -15,8 +21,14 @@ namespace Model
 
 	[Message(OuterOpcode.Actor_TestRequest)]
 	[ProtoContract]
-	public partial class Actor_TestRequest: MessageObject, IActorRequest
+	public partial class Actor_TestRequest: IActorRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public string request;
 
@@ -24,12 +36,17 @@ namespace Model
 
 	[Message(OuterOpcode.Actor_TestResponse)]
 	[ProtoContract]
-	public partial class Actor_TestResponse: MessageObject, IActorResponse
+	public partial class Actor_TestResponse: IActorResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public string response;
 
@@ -37,8 +54,14 @@ namespace Model
 
 	[Message(OuterOpcode.Actor_TransferRequest)]
 	[ProtoContract]
-	public partial class Actor_TransferRequest: MessageObject, IActorRequest
+	public partial class Actor_TransferRequest: IActorRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public int MapIndex;
 
@@ -46,18 +69,26 @@ namespace Model
 
 	[Message(OuterOpcode.Actor_TransferResponse)]
 	[ProtoContract]
-	public partial class Actor_TransferResponse: MessageObject, IActorResponse
+	public partial class Actor_TransferResponse: IActorResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(OuterOpcode.C2G_EnterMap)]
 	[ProtoContract]
 	public partial class C2G_EnterMap: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterMap)]
@@ -65,9 +96,14 @@ namespace Model
 	public partial class G2C_EnterMap: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long UnitId;
 
@@ -93,31 +129,65 @@ namespace Model
 
 	[Message(OuterOpcode.Actor_CreateUnits)]
 	[ProtoContract]
-	public partial class Actor_CreateUnits: MessageObject, IActorMessage
+	public partial class Actor_CreateUnits: IActorMessage
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
 		[ProtoMember(1)]
 		public List<UnitInfo> Units = new List<UnitInfo>();
 
 	}
 
-	[Message(OuterOpcode.FrameMessageInfo)]
+	[Message(OuterOpcode.OneFrameMessage)]
 	[ProtoContract]
-	public partial class FrameMessageInfo
+	public partial class OneFrameMessage: IActorMessage
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
-		public long Id;
+		public ushort Op;
 
 		[ProtoMember(2, IsRequired = true)]
-		public MessageObject Message;
+		public byte[] AMessage;
+
+	}
+
+	[Message(OuterOpcode.FrameMessage)]
+	[ProtoContract]
+	public partial class FrameMessage: IActorMessage
+	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93, IsRequired = true)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1, IsRequired = true)]
+		public int Frame;
+
+		[ProtoMember(2)]
+		public List<OneFrameMessage> Messages = new List<OneFrameMessage>();
 
 	}
 
 	[Message(OuterOpcode.Frame_ClickMap)]
 	[ProtoContract]
-	public partial class Frame_ClickMap: MessageObject, IFrameMessage
+	public partial class Frame_ClickMap: IFrameMessage
 	{
-		[ProtoMember(92, IsRequired = true)]
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(94, IsRequired = true)]
 		public long Id { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public int X;
 
@@ -130,6 +200,9 @@ namespace Model
 	[ProtoContract]
 	public partial class C2M_Reload: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public AppType AppType;
 
@@ -140,15 +213,23 @@ namespace Model
 	public partial class M2C_Reload: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(OuterOpcode.C2R_Ping)]
 	[ProtoContract]
 	public partial class C2R_Ping: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.R2C_Ping)]
@@ -156,35 +237,14 @@ namespace Model
 	public partial class R2C_Ping: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
-
-}
-#if SERVER
-namespace Model
-{
-	[BsonKnownTypes(typeof(Actor_Test))]
-	[BsonKnownTypes(typeof(Actor_TestRequest))]
-	[BsonKnownTypes(typeof(Actor_TestResponse))]
-	[BsonKnownTypes(typeof(Actor_TransferRequest))]
-	[BsonKnownTypes(typeof(Actor_TransferResponse))]
-	[BsonKnownTypes(typeof(Actor_CreateUnits))]
-	[BsonKnownTypes(typeof(Frame_ClickMap))]
-	public partial class MessageObject {}
-
-}
-#endif
-namespace Model
-{
-	[ProtoInclude(OuterOpcode.Actor_Test, typeof(Actor_Test))]
-	[ProtoInclude(OuterOpcode.Actor_TestRequest, typeof(Actor_TestRequest))]
-	[ProtoInclude(OuterOpcode.Actor_TestResponse, typeof(Actor_TestResponse))]
-	[ProtoInclude(OuterOpcode.Actor_TransferRequest, typeof(Actor_TransferRequest))]
-	[ProtoInclude(OuterOpcode.Actor_TransferResponse, typeof(Actor_TransferResponse))]
-	[ProtoInclude(OuterOpcode.Actor_CreateUnits, typeof(Actor_CreateUnits))]
-	[ProtoInclude(OuterOpcode.Frame_ClickMap, typeof(Frame_ClickMap))]
-	public partial class MessageObject {}
 
 }

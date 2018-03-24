@@ -1,8 +1,8 @@
 using ProtoBuf;
-using Model;
+using ETModel;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
-namespace Model
+namespace ETModel
 {
 /// <summary>
 /// 传送unit
@@ -11,6 +11,9 @@ namespace Model
 	[ProtoContract]
 	public partial class M2M_TrasferUnitRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public Unit Unit;
 
@@ -21,15 +24,23 @@ namespace Model
 	public partial class M2M_TrasferUnitResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.M2A_Reload)]
 	[ProtoContract]
 	public partial class M2A_Reload: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 	}
 
 	[Message(InnerOpcode.A2M_Reload)]
@@ -37,15 +48,23 @@ namespace Model
 	public partial class A2M_Reload: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.G2G_LockRequest)]
 	[ProtoContract]
 	public partial class G2G_LockRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Id;
 
@@ -59,15 +78,23 @@ namespace Model
 	public partial class G2G_LockResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.G2G_LockReleaseRequest)]
 	[ProtoContract]
 	public partial class G2G_LockReleaseRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Id;
 
@@ -81,15 +108,23 @@ namespace Model
 	public partial class G2G_LockReleaseResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.DBSaveRequest)]
 	[ProtoContract]
 	public partial class DBSaveRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public bool NeedCache;
 
@@ -106,15 +141,23 @@ namespace Model
 	public partial class DBSaveBatchResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.DBSaveBatchRequest)]
 	[ProtoContract]
 	public partial class DBSaveBatchRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public bool NeedCache;
 
@@ -131,15 +174,23 @@ namespace Model
 	public partial class DBSaveResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.DBQueryRequest)]
 	[ProtoContract]
 	public partial class DBQueryRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Id;
 
@@ -156,9 +207,14 @@ namespace Model
 	public partial class DBQueryResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public Component Disposer;
 
@@ -168,6 +224,9 @@ namespace Model
 	[ProtoContract]
 	public partial class DBQueryBatchRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public string CollectionName;
 
@@ -184,9 +243,14 @@ namespace Model
 	public partial class DBQueryBatchResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 		[ProtoMember(1)]
 		public List<Component> Disposers = new List<Component>();
 
@@ -196,6 +260,9 @@ namespace Model
 	[ProtoContract]
 	public partial class DBQueryJsonRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public string CollectionName;
 
@@ -212,9 +279,14 @@ namespace Model
 	public partial class DBQueryJsonResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 		[ProtoMember(1)]
 		public List<Component> Disposers = new List<Component>();
 
@@ -224,6 +296,9 @@ namespace Model
 	[ProtoContract]
 	public partial class ObjectAddRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Key;
 
@@ -237,15 +312,23 @@ namespace Model
 	public partial class ObjectAddResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.ObjectRemoveRequest)]
 	[ProtoContract]
 	public partial class ObjectRemoveRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Key;
 
@@ -256,15 +339,23 @@ namespace Model
 	public partial class ObjectRemoveResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.ObjectLockRequest)]
 	[ProtoContract]
 	public partial class ObjectLockRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Key;
 
@@ -281,15 +372,23 @@ namespace Model
 	public partial class ObjectLockResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.ObjectUnLockRequest)]
 	[ProtoContract]
 	public partial class ObjectUnLockRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Key;
 
@@ -306,15 +405,23 @@ namespace Model
 	public partial class ObjectUnLockResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 	}
 
 	[Message(InnerOpcode.ObjectGetRequest)]
 	[ProtoContract]
 	public partial class ObjectGetRequest: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Key;
 
@@ -325,9 +432,14 @@ namespace Model
 	public partial class ObjectGetResponse: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public int AppId;
 
@@ -337,6 +449,9 @@ namespace Model
 	[ProtoContract]
 	public partial class R2G_GetLoginKey: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public string Account;
 
@@ -347,9 +462,14 @@ namespace Model
 	public partial class G2R_GetLoginKey: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long Key;
 
@@ -359,6 +479,9 @@ namespace Model
 	[ProtoContract]
 	public partial class G2M_CreateUnit: IRequest
 	{
+		[ProtoMember(90, IsRequired = true)]
+		public int RpcId { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long PlayerId;
 
@@ -372,9 +495,14 @@ namespace Model
 	public partial class M2G_CreateUnit: IResponse
 	{
 		[ProtoMember(90, IsRequired = true)]
-		public int Error { get; set; }
+		public int RpcId { get; set; }
+
 		[ProtoMember(91, IsRequired = true)]
+		public int Error { get; set; }
+
+		[ProtoMember(92, IsRequired = true)]
 		public string Message { get; set; }
+
 		[ProtoMember(1, IsRequired = true)]
 		public long UnitId;
 
@@ -383,12 +511,4 @@ namespace Model
 
 	}
 
-}
-#if SERVER
-namespace Model
-{
-}
-#endif
-namespace Model
-{
 }

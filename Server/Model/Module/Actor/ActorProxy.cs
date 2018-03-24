@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Model
+namespace ETModel
 {
 	[ObjectSystem]
 	public class ActorProxyAwakeSystem : AwakeSystem<ActorProxy>
@@ -18,9 +18,12 @@ namespace Model
 	[ObjectSystem]
 	public class ActorProxyStartSystem : StartSystem<ActorProxy>
 	{
-		public override void Start(ActorProxy self)
+		public override async void Start(ActorProxy self)
 		{
-			self.Start();
+			int appId = await Game.Scene.GetComponent<LocationProxyComponent>().Get(self.Id);
+			self.Address = Game.Scene.GetComponent<StartConfigComponent>().Get(appId).GetComponent<InnerConfig>().IPEndPoint;
+
+			self.UpdateAsync();
 		}
 	}
 
@@ -75,15 +78,7 @@ namespace Model
 			this.tcs = null;
 			t?.SetResult(new ActorTask());
 		}
-
-		public async void Start()
-		{
-			int appId = await Game.Scene.GetComponent<LocationProxyComponent>().Get(this.Id);
-			this.Address = Game.Scene.GetComponent<StartConfigComponent>().Get(appId).GetComponent<InnerConfig>().IPEndPoint;
-
-			this.UpdateAsync();
-		}
-
+		
 		private void Add(ActorTask task)
 		{
 			if (this.IsDisposed)
@@ -126,7 +121,7 @@ namespace Model
 			return this.tcs.Task;
 		}
 
-		private async void UpdateAsync()
+		public async void UpdateAsync()
 		{
 			while (true)
 			{
@@ -206,39 +201,26 @@ namespace Model
 			}
 		}
 
-		public void Send(IMessage message)
+		public void Send(IActorMessage message)
 		{
-			ActorTask task = new ActorTask();
-			task.message = (MessageObject)message;
-			task.proxy = this;
+			ActorTask task = new ActorTask
+			{
+				message = message,
+				proxy = this
+			};
 			this.Add(task);
 		}
 
-		public Task<IResponse> Call(IRequest request)
+		public Task<IResponse> Call(IActorRequest request)
 		{
-			ActorTask task = new ActorTask();
-			task.message = (MessageObject)request;
-			task.proxy = this;
-			task.Tcs = new TaskCompletionSource<IResponse>();
+			ActorTask task = new ActorTask
+			{
+				message = request,
+				proxy = this,
+				Tcs = new TaskCompletionSource<IResponse>()
+			};
 			this.Add(task);
 			return task.Tcs.Task;
-		}
-
-		public async Task<IResponse> RealCall(ActorRequest request, CancellationToken cancellationToken)
-		{
-			try
-			{
-				//Log.Debug($"realcall {MongoHelper.ToJson(request)} {this.Address}");
-				request.Id = this.Id;
-				Session session = Game.Scene.GetComponent<NetInnerComponent>().Get(this.Address);
-				IResponse response = await session.Call(request, cancellationToken);
-				return response;
-			}
-			catch (RpcException e)
-			{
-				Log.Error($"{this.Address} {e}");
-				throw;
-			}
 		}
 
 		public string DebugQueue(Queue<ActorTask> tasks)

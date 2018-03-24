@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Model
+namespace ETModel
 {
 	[BsonIgnoreExtraElements]
 	public partial class Entity : Component
@@ -52,6 +52,23 @@ namespace Model
 
 			this.components.Clear();
 			this.componentDict.Clear();
+		}
+
+		public Component AddComponent(Type type)
+		{
+			Component component = ComponentFactory.CreateWithParent(type, this);
+
+			if (this.componentDict.ContainsKey(component.GetType()))
+			{
+				throw new Exception($"AddComponent, component already exist, id: {this.Id}, component: {type.Name}");
+			}
+
+			if (component is ISerializeToEntity)
+			{
+				this.components.Add(component);
+			}
+			this.componentDict.Add(component.GetType(), component);
+			return component;
 		}
 
 		public K AddComponent<K>() where K : Component, new()
@@ -158,6 +175,16 @@ namespace Model
 				return default(K);
 			}
 			return (K)component;
+		}
+
+		public Component GetComponent(Type type)
+		{
+			Component component;
+			if (!this.componentDict.TryGetValue(type, out component))
+			{
+				return null;
+			}
+			return component;
 		}
 
 		public Component[] GetComponents()

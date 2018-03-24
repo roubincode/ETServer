@@ -1,34 +1,37 @@
 ﻿using System;
-using Model;
+using ETModel;
 
-namespace Hotfix
+namespace ETHotfix
 {
 	public class InnerMessageDispatcher: IMessageDispatcher
 	{
-		public void Dispatch(Session session, PacketInfo packetInfo)
+		public void Dispatch(Session session, Packet packet)
 		{
-			Type messageType = Game.Scene.GetComponent<OpcodeTypeComponent>().GetType(packetInfo.Opcode);
-			IMessage message = (IMessage)session.Network.MessagePacker.DeserializeFrom(messageType, packetInfo.Bytes, packetInfo.Index, packetInfo.Length);
-			// 收到actor rpc request
-			if (message is ActorRequest actorRpcRequest)
+			ushort opcode = packet.Opcode();
+			Type messageType = Game.Scene.GetComponent<OpcodeTypeComponent>().GetType(opcode);
+			IMessage message = (IMessage)session.Network.MessagePacker.DeserializeFrom(messageType, packet.Bytes, Packet.Index, packet.Length - Packet.Index);
+			
+			// 收到actor消息,放入actor队列
+			if (message is IActorMessage iActorMessage)
 			{
-				Entity entity = Game.Scene.GetComponent<ActorManagerComponent>().Get(actorRpcRequest.Id);
+				Entity entity = Game.Scene.GetComponent<ActorManagerComponent>().Get(iActorMessage.ActorId);
 				if (entity == null)
 				{
-					Log.Warning($"not found actor: {actorRpcRequest.Id}");
+					Log.Debug($"not found actor: {iActorMessage.ActorId}");
 					ActorResponse response = new ActorResponse
 					{
-						Error = ErrorCode.ERR_NotFoundActor
+						Error = ErrorCode.ERR_NotFoundActor,
+						RpcId = iActorMessage.RpcId
 					};
-					session.Reply(packetInfo.RpcId, response);
+					session.Reply(response);
 					return;
 				}
 				
-				entity.GetComponent<ActorComponent>().Add(new ActorMessageInfo() { Session = session, RpcId = packetInfo.RpcId, Message = actorRpcRequest });
+				entity.GetComponent<ActorComponent>().Add(new ActorMessageInfo() { Session = session, Message = iActorMessage });
 				return;
 			}
 			
-			Game.Scene.GetComponent<MessageDispatherComponent>().Handle(session, new MessageInfo(packetInfo.RpcId, packetInfo.Opcode, message));
+			Game.Scene.GetComponent<MessageDispatherComponent>().Handle(session, new MessageInfo(opcode, message));
 		}
 	}
 }

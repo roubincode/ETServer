@@ -1,2 +1,213 @@
-2018-03-01 17:05:22.3305 AllServer 001 (Program.cs:40) server start........................
-2018-03-01 17:05:22.4969 AllServer 001 (ActorMessageDispatherComponent.cs:40) apptype: AllServer
+2018-03-22 12:28:39.4777   (Program.cs:22) System.IO.FileNotFoundException: Could not find file '/Users/edusoho/Desktop/ETServer/Server/App/Hotfix.dll'.
+File name: '/Users/edusoho/Desktop/ETServer/Server/App/Hotfix.dll'
+   at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirectory, Func`2 errorRewriter)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String path, OpenFlags flags, Int32 mode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.InternalReadAllBytes(String path)
+   at System.IO.File.ReadAllBytes(String path)
+   at ETModel.DllHelper.GetHotfixAssembly() in /Users/edusoho/Desktop/ETServer/Server/Model/Base/Helper/DllHelper.cs:line 12
+   at App.Program.Main(String[] args) in /Users/edusoho/Desktop/ETServer/Server/App/Program.cs:line 22
+2018-03-22 12:30:09.8138   (Program.cs:22) System.IO.FileNotFoundException: Could not find file '/Users/edusoho/Desktop/ETServer/Server/App/Hotfix.dll'.
+File name: '/Users/edusoho/Desktop/ETServer/Server/App/Hotfix.dll'
+   at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirectory, Func`2 errorRewriter)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String path, OpenFlags flags, Int32 mode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.InternalReadAllBytes(String path)
+   at System.IO.File.ReadAllBytes(String path)
+   at ETModel.DllHelper.GetHotfixAssembly() in /Users/edusoho/Desktop/ETServer/Server/Model/Base/Helper/DllHelper.cs:line 12
+   at App.Program.Main(String[] args) in /Users/edusoho/Desktop/ETServer/Server/App/Program.cs:line 22
+2018-03-22 12:31:09.3880   (Program.cs:22) System.IO.FileNotFoundException: Could not find file '/Users/edusoho/Desktop/ETServer/Server/App/Hotfix.dll'.
+File name: '/Users/edusoho/Desktop/ETServer/Server/App/Hotfix.dll'
+   at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirectory, Func`2 errorRewriter)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String path, OpenFlags flags, Int32 mode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.InternalReadAllBytes(String path)
+   at System.IO.File.ReadAllBytes(String path)
+   at ETModel.DllHelper.GetHotfixAssembly() in /Users/edusoho/Desktop/ETServer/Server/Model/Base/Helper/DllHelper.cs:line 12
+   at App.Program.Main(String[] args) in /Users/edusoho/Desktop/ETServer/Server/App/Program.cs:line 22
+2018-03-22 12:32:15.8057   (Program.cs:22) System.IO.FileNotFoundException: Could not find file '/Users/edusoho/Desktop/ETServer/Server/App/Hotfix.dll'.
+File name: '/Users/edusoho/Desktop/ETServer/Server/App/Hotfix.dll'
+   at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirectory, Func`2 errorRewriter)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String path, OpenFlags flags, Int32 mode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.InternalReadAllBytes(String path)
+   at System.IO.File.ReadAllBytes(String path)
+   at ETModel.DllHelper.GetHotfixAssembly() in /Users/edusoho/Desktop/ETServer/Server/Model/Base/Helper/DllHelper.cs:line 12
+   at App.Program.Main(String[] args) in /Users/edusoho/Desktop/ETServer/Server/App/Program.cs:line 22
+2018-03-22 12:33:08.7388 AllServer 001 (Program.cs:40) server start........................ 1 AllServer
+2018-03-22 12:33:08.8644 AllServer 001 (ActorMessageDispatherComponent.cs:40) apptype: AllServer
+2018-03-22 13:03:43.8108 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200781756847 Session
+2018-03-22 13:03:43.8281 AllServer 001 (LocationComponent.cs:100) location add key: 381200781756847 appid: 1
+2018-03-22 13:03:45.6733 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200781887942 Unit
+2018-03-22 13:03:45.6807 AllServer 001 (LocationComponent.cs:100) location add key: 381200781887942 appid: 1
+2018-03-22 13:03:45.7630 AllServer 001 (LocationComponent.cs:207) location get key: 381200781756847 1
+2018-03-22 13:03:48.0838 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200781756847 Session
+2018-03-22 13:03:48.0951 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200781756847
+2018-03-22 13:03:48.1007 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200781756847
+2018-03-22 13:03:48.5991 AllServer 001 (LocationComponent.cs:207) location get key: 381200781756847 1
+2018-03-22 13:04:46.3462 AllServer 001 (Program.cs:40) server start........................ 1 AllServer
+2018-03-22 13:04:46.4759 AllServer 001 (ActorMessageDispatherComponent.cs:40) apptype: AllServer
+2018-03-22 13:05:09.2144 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200787374325 Session
+2018-03-22 13:05:09.2319 AllServer 001 (LocationComponent.cs:100) location add key: 381200787374325 appid: 1
+2018-03-22 13:05:17.0587 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200787898702 Session
+2018-03-22 13:05:17.0657 AllServer 001 (LocationComponent.cs:100) location add key: 381200787898702 appid: 1
+2018-03-22 13:05:17.8249 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200787898713 Unit
+2018-03-22 13:05:17.8323 AllServer 001 (LocationComponent.cs:100) location add key: 381200787898713 appid: 1
+2018-03-22 13:05:17.9200 AllServer 001 (LocationComponent.cs:207) location get key: 381200787898702 1
+2018-03-22 13:05:21.8042 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200788160896 Unit
+2018-03-22 13:05:21.8140 AllServer 001 (LocationComponent.cs:100) location add key: 381200788160896 appid: 1
+2018-03-22 13:05:21.8441 AllServer 001 (LocationComponent.cs:207) location get key: 381200787374325 1
+2018-03-22 13:05:23.5209 AllServer 001 (LocationComponent.cs:207) location get key: 381200788160896 1
+2018-03-22 13:05:31.6460 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200787374325 Session
+2018-03-22 13:05:31.6643 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787374325
+2018-03-22 13:05:31.6706 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787374325
+2018-03-22 13:05:32.1693 AllServer 001 (LocationComponent.cs:207) location get key: 381200787374325 1
+2018-03-22 13:05:32.4870 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200787898702 Session
+2018-03-22 13:05:32.5221 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787898702
+2018-03-22 13:05:32.5272 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787898702
+2018-03-22 13:05:33.0248 AllServer 001 (LocationComponent.cs:207) location get key: 381200787898702 1
+2018-03-22 13:06:36.5935 AllServer 001 (LocationComponent.cs:207) location get key: 381200787898702 1
+2018-03-22 13:06:36.5994 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787898702
+2018-03-22 13:06:36.6057 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787898702
+2018-03-22 13:06:36.6150 AllServer 001 (LocationComponent.cs:207) location get key: 381200787374325 1
+2018-03-22 13:06:36.6177 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787374325
+2018-03-22 13:06:36.6223 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787374325
+2018-03-22 13:06:37.1035 AllServer 001 (LocationComponent.cs:207) location get key: 381200787898702 1
+2018-03-22 13:06:37.1201 AllServer 001 (LocationComponent.cs:207) location get key: 381200787374325 1
+2018-03-22 13:07:46.5888 AllServer 001 (LocationComponent.cs:207) location get key: 381200787898702 1
+2018-03-22 13:07:46.5948 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787898702
+2018-03-22 13:07:46.6011 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787898702
+2018-03-22 13:07:46.6107 AllServer 001 (LocationComponent.cs:207) location get key: 381200787374325 1
+2018-03-22 13:07:46.6135 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787374325
+2018-03-22 13:07:46.6182 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787374325
+2018-03-22 13:07:47.0987 AllServer 001 (LocationComponent.cs:207) location get key: 381200787898702 1
+2018-03-22 13:07:47.1168 AllServer 001 (LocationComponent.cs:207) location get key: 381200787374325 1
+2018-03-22 13:08:56.5762 AllServer 001 (LocationComponent.cs:207) location get key: 381200787898702 1
+2018-03-22 13:08:56.5824 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787898702
+2018-03-22 13:08:56.5873 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787898702
+2018-03-22 13:08:56.5954 AllServer 001 (LocationComponent.cs:207) location get key: 381200787374325 1
+2018-03-22 13:08:56.5977 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787374325
+2018-03-22 13:08:56.6018 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200787374325
+2018-03-22 13:08:57.0852 AllServer 001 (LocationComponent.cs:207) location get key: 381200787898702 1
+2018-03-22 13:08:57.0991 AllServer 001 (LocationComponent.cs:207) location get key: 381200787374325 1
+2018-03-22 13:09:42.2003 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200805268470 Session
+2018-03-22 13:09:42.2078 AllServer 001 (LocationComponent.cs:100) location add key: 381200805268470 appid: 1
+2018-03-22 13:09:46.2456 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200805530660 Session
+2018-03-22 13:09:46.2529 AllServer 001 (LocationComponent.cs:100) location add key: 381200805530660 appid: 1
+2018-03-22 13:09:46.7766 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200805530669 Unit
+2018-03-22 13:09:46.7853 AllServer 001 (LocationComponent.cs:100) location add key: 381200805530669 appid: 1
+2018-03-22 13:09:46.8657 AllServer 001 (LocationComponent.cs:207) location get key: 381200805530660 1
+2018-03-22 13:09:48.7789 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200805661762 Unit
+2018-03-22 13:09:48.7875 AllServer 001 (LocationComponent.cs:100) location add key: 381200805661762 appid: 1
+2018-03-22 13:09:48.8799 AllServer 001 (LocationComponent.cs:207) location get key: 381200805268470 1
+2018-03-22 13:09:53.7134 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200805268470 Session
+2018-03-22 13:09:53.7615 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200805268470
+2018-03-22 13:09:53.7685 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200805268470
+2018-03-22 13:09:54.2661 AllServer 001 (LocationComponent.cs:207) location get key: 381200805268470 1
+2018-03-22 13:09:54.4291 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200805530660 Session
+2018-03-22 13:09:54.5126 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200805530660
+2018-03-22 13:09:54.5200 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200805530660
+2018-03-22 13:09:55.0172 AllServer 001 (LocationComponent.cs:207) location get key: 381200805530660 1
+2018-03-22 13:10:04.0125 AllServer 001 (Program.cs:40) server start........................ 1 AllServer
+2018-03-22 13:10:04.1417 AllServer 001 (ActorMessageDispatherComponent.cs:40) apptype: AllServer
+2018-03-22 13:10:16.8787 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200807493774 Session
+2018-03-22 13:10:16.8966 AllServer 001 (LocationComponent.cs:100) location add key: 381200807493774 appid: 1
+2018-03-22 13:10:17.4052 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200807559318 Unit
+2018-03-22 13:10:17.4124 AllServer 001 (LocationComponent.cs:100) location add key: 381200807559318 appid: 1
+2018-03-22 13:10:17.4703 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:10:25.0879 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200808083688 Session
+2018-03-22 13:10:25.0953 AllServer 001 (LocationComponent.cs:100) location add key: 381200808083688 appid: 1
+2018-03-22 13:10:25.6957 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200808083697 Unit
+2018-03-22 13:10:25.7048 AllServer 001 (LocationComponent.cs:100) location add key: 381200808083697 appid: 1
+2018-03-22 13:10:25.7350 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:10:26.4445 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083697 1
+2018-03-22 13:10:36.2393 AllServer 001 (LocationComponent.cs:207) location get key: 381200807559318 1
+2018-03-22 13:11:23.3472 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200807493774 Session
+2018-03-22 13:11:23.3531 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:11:23.3607 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:11:23.8573 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:11:30.2406 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200808083688 Session
+2018-03-22 13:11:30.2448 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:11:30.2500 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:11:30.7472 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:12:24.2921 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:12:24.2976 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:12:24.3033 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:12:24.8008 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:12:34.3093 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:12:34.3146 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:12:34.3201 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:12:34.8180 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:13:34.2434 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:13:34.2476 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:13:34.2523 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:13:34.7498 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:13:44.2658 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:13:44.2699 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:13:44.2742 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:13:44.7718 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:14:44.3182 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:14:44.3229 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:14:44.3282 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:14:44.8259 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:14:54.2435 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:14:54.2490 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:14:54.2544 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:14:54.7524 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:15:54.2925 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:15:54.2965 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:15:54.3010 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:15:54.7982 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:16:04.3201 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:16:04.3243 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:16:04.3283 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:16:04.8268 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:17:04.2553 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:17:04.2584 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:17:04.2641 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:17:04.7624 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:17:14.2902 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:17:14.2963 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:17:14.3023 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:17:14.8001 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:18:14.2541 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:18:14.2599 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:18:14.2660 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:18:14.7627 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:18:24.2791 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:18:24.2841 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:18:24.2893 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:18:24.7869 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:19:24.2874 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:19:24.2920 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:19:24.2972 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200807493774
+2018-03-22 13:19:24.7948 AllServer 001 (LocationComponent.cs:207) location get key: 381200807493774 1
+2018-03-22 13:19:34.3025 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:19:34.3075 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:19:34.3127 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200808083688
+2018-03-22 13:19:34.8102 AllServer 001 (LocationComponent.cs:207) location get key: 381200808083688 1
+2018-03-22 13:20:38.4382 AllServer 001 (Program.cs:40) server start........................ 1 AllServer
+2018-03-22 13:20:38.5657 AllServer 001 (ActorMessageDispatherComponent.cs:40) apptype: AllServer
+2018-03-22 13:22:01.0470 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200853697371 Session
+2018-03-22 13:22:01.0654 AllServer 001 (LocationComponent.cs:100) location add key: 381200853697371 appid: 1
+2018-03-22 13:22:03.3882 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200853828474 Session
+2018-03-22 13:22:03.3957 AllServer 001 (LocationComponent.cs:100) location add key: 381200853828474 appid: 1
+2018-03-22 13:22:03.8242 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200853828481 Unit
+2018-03-22 13:22:03.8317 AllServer 001 (LocationComponent.cs:100) location add key: 381200853828481 appid: 1
+2018-03-22 13:22:03.8635 AllServer 001 (LocationComponent.cs:207) location get key: 381200853828474 1
+2018-03-22 13:22:04.9482 AllServer 001 (ActorManagerComponent.cs:27) add actor: 381200853894030 Unit
+2018-03-22 13:22:04.9576 AllServer 001 (LocationComponent.cs:100) location add key: 381200853894030 appid: 1
+2018-03-22 13:22:04.9860 AllServer 001 (LocationComponent.cs:207) location get key: 381200853697371 1
+2018-03-22 13:22:05.6157 AllServer 001 (LocationComponent.cs:207) location get key: 381200853894030 1
+2018-03-22 13:22:08.2257 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200853697371 Session
+2018-03-22 13:22:08.2348 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200853697371
+2018-03-22 13:22:08.2404 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200853697371
+2018-03-22 13:22:08.7372 AllServer 001 (LocationComponent.cs:207) location get key: 381200853697371 1
+2018-03-22 13:22:09.9686 AllServer 001 (ActorManagerComponent.cs:38) remove actor: 381200853828474 Session
+2018-03-22 13:22:10.0476 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200853828474
+2018-03-22 13:22:10.0544 AllServer 001 (InnerMessageDispatcher.cs:20) not found actor: 381200853828474
+2018-03-22 13:22:10.5523 AllServer 001 (LocationComponent.cs:207) location get key: 381200853828474 1

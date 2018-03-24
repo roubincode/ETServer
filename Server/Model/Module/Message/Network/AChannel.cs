@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace Model
+namespace ETModel
 {
 	[Flags]
 	public enum PacketFlags
@@ -43,9 +43,13 @@ namespace Model
 			}
 		}
 
-		protected void OnError(AChannel channel, SocketError e)
+		protected void OnError(SocketError e)
 		{
-			this.errorCallback?.Invoke(channel, e);
+			if (this.IsDisposed)
+			{
+				return;
+			}
+			this.errorCallback?.Invoke(this, e);
 		}
 
 

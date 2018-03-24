@@ -1,4 +1,4 @@
-namespace Model
+namespace ETModel
 {
 	public static partial class HotfixOpcode
 	{
@@ -9,5 +9,8 @@ namespace Model
 		 public const ushort G2C_TestHotfixMessage = 10005;
 		 public const ushort C2M_TestActorRequest = 10006;
 		 public const ushort M2C_TestActorResponse = 10007;
+		 public const ushort PlayerInfo = 10008;
+		 public const ushort C2G_PlayerInfo = 10009;
+		 public const ushort G2C_PlayerInfo = 10010;
 	}
 }

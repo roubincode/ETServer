@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Model
+namespace ETModel
 {
 	[ObjectSystem]
 	public class ActorMessageDispatherComponentStartSystem : AwakeSystem<ActorMessageDispatherComponent>
@@ -75,14 +75,14 @@ namespace Model
 			return actorHandler;
 		}
 
-		public async Task Handle(Session session, Entity entity, uint rpcId, ActorRequest message)
+		public async Task Handle(Session session, Entity entity, IActorMessage actorRequest)
 		{
-			if (!this.handlers.TryGetValue(message.AMessage.GetType(), out IMActorHandler handler))
+			if (!this.handlers.TryGetValue(actorRequest.GetType(), out IMActorHandler handler))
 			{
-				throw new Exception($"not found message handler: {MongoHelper.ToJson(message)}");
+				throw new Exception($"not found message handler: {MongoHelper.ToJson(actorRequest)}");
 			}
 			
-			await handler.Handle(session, entity, rpcId, message);
+			await handler.Handle(session, entity, actorRequest);
 		}
 
 		public override void Dispose()

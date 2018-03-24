@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading;
-using Model;
+using ETModel;
 using NLog;
 
 namespace App
@@ -37,7 +37,7 @@ namespace App
 				LogManager.Configuration.Variables["appTypeFormat"] = $"{startConfig.AppType,-8}";
 				LogManager.Configuration.Variables["appIdFormat"] = $"{startConfig.AppId:D3}";
 
-				Log.Info("server start........................");
+				Log.Info($"server start........................ {startConfig.AppId} {startConfig.AppType}");
 
 				Game.Scene.AddComponent<OpcodeTypeComponent>();
 				Game.Scene.AddComponent<MessageDispatherComponent>();
@@ -91,6 +91,7 @@ namespace App
 						Game.Scene.AddComponent<UnitComponent>();
 						Game.Scene.AddComponent<DBComponent>();
 						Game.Scene.AddComponent<DBProxyComponent>();
+						Game.Scene.AddComponent<DBCacheComponent>();
 						Game.Scene.AddComponent<LocationComponent>();
 						Game.Scene.AddComponent<ActorMessageDispatherComponent>();
 						Game.Scene.AddComponent<ActorManagerComponent>();

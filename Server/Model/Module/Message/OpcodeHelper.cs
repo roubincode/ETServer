@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Model
+namespace ETModel
 {
 	public static class OpcodeHelper
 	{
@@ -20,6 +20,11 @@ namespace Model
 			}
 
 			return false;
+		}
+
+		public static bool IsClientHotfixMessage(ushort opcode)
+		{
+			return opcode > 10000;
 		}
 	}
 }

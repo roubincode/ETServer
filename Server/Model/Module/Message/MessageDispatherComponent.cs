@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Model
+namespace ETModel
 {
 	[ObjectSystem]
 	public class MessageDispatherComponentAwakeSystem : AwakeSystem<MessageDispatherComponent>
@@ -27,7 +27,6 @@ namespace Model
 	public class MessageDispatherComponent : Component
 	{
 		private readonly Dictionary<ushort, List<IMHandler>> handlers = new Dictionary<ushort, List<IMHandler>>();
-
 
 		public void Awake()
 		{
@@ -80,7 +79,7 @@ namespace Model
 			List<IMHandler> actions;
 			if (!this.handlers.TryGetValue(messageInfo.Opcode, out actions))
 			{
-				Log.Error($"消息 {messageInfo.Opcode} 没有处理");
+				Log.Error($"消息没有处理: {messageInfo.Opcode} {JsonHelper.ToJson(messageInfo.Message)}");
 				return;
 			}
 			
@@ -88,7 +87,7 @@ namespace Model
 			{
 				try
 				{
-					ev.Handle(session, messageInfo.RpcId, messageInfo.Message);
+					ev.Handle(session, messageInfo.Message);
 				}
 				catch (Exception e)
 				{
