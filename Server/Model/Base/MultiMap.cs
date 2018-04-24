@@ -32,6 +32,11 @@ namespace ETModel
 			return this.dictionary.First();
 		}
 
+		public T FirstKey()
+		{
+			return this.dictionary.Keys.First();
+		}
+
 		public int Count
 		{
 			get
