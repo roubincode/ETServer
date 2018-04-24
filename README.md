@@ -2,6 +2,18 @@
 ### 框架地址：https://github.com/egametang/ET
 __讨论QQ群 : 474643097__
 
+# ET 3.1发布!
+1.进一步完善了entity component模型，去掉了Dispose层级，增加了ComponentWithId继承层级，Component增加了InstanceId，更好的实现了System机制  
+2.增加了DestroySystem事件，在Component Dispose时调用  
+3.actor实现代码进行了简化  
+4.升级了默认Unity版本，修复了kcp协议中UdpClient无法接收udp消息的bug  
+
+# ET 3.0发布啦! 3.0是ET非常完善的一个版本，在2.0的基础上增加了如下功能：
+1.客户端全热更支持，逻辑，消息，事件，config，UI等等全部可以热更了  
+2.System改成了事件机制，awake，update，start等system可以在不同模块多次订阅  
+3.消息去掉了继承结构，其它客户端对接起来，更方便了。  
+4.增加了初步的Module机制，目录结构更清晰，社区分享代码更方便了。  
+5.优化了代码，3.0的代码更加清晰，结构更加合理，前后端代码几乎一模一样了  
 
 ## ETServer c#游戏服务器框架
 这是肉饼负责维护的一个ET框架的纯服务器版本，同步原框架更新，目前同步原框架到3.0正式版。  
