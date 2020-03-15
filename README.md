@@ -1,4 +1,4 @@
-## 后续版本更新转到 ETCore的分支下了 https://github.com/roubingcode/ETCore
+## 后续版本更新转到ETServer的分支 ETCore 下了 https://github.com/roubingcode/ETCore
 
 ## ETServer运行使用方法
 1 安装.net sdk  
