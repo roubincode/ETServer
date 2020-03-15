@@ -1,3 +1,5 @@
+## 后续版本更新转到 ETCore的分支下了 https://github.com/roubingcode/ETCore
+
 ## ETServer运行使用方法
 1 安装.net sdk  
 2 通过vs installer安装 .net framework (共享组件需要安装在C盘)  
